@@ -58,26 +58,26 @@ def process_file():
 def process_row(row):
     if row[0] == "ID":
         return
-    if tuple(row) not in all_rows:
+    if tuple(row) not in all_rows:  # check for duplicate rows
         all_rows.add(tuple(row))
     else:
         return
-    if not (row[0], row[6], row[8], row[1], row[2]) in athletes:
+    if not (row[0], row[6], row[8], row[1], row[2]) in athletes:  # check for duplicate athlete row
         athletes.add((row[0], row[6], row[8], row[1], row[2]))
         athlete_outwriter.writerow([row[0], row[6], row[8], row[1], row[2]])
-    if not (row[6], row[7]) in teams:
+    if not (row[6], row[7]) in teams:  # check for duplicate team row
         teams.add((row[6], row[7]))
         team_outwriter.writerow([row[6], row[7]])
-    if not (row[8], row[9], row[10], row[11]) in games:
+    if not (row[8], row[9], row[10], row[11]) in games:  # check for duplicate game row
         games.add((row[8], row[9], row[10], row[11]))
         game_outwriter.writerow([row[8], row[9], row[10], row[11]])
-    if (row[13], row[12]) not in events:
+    if (row[13], row[12]) not in events:  # check for duplicate event row
         events.add((row[13], row[12]))
         event_outwriter.writerow([row[13], row[12]])
-    if not (row[14]) in medals and row[14] != '':
+    if not (row[14]) in medals and row[14] != '':  # check for duplicate medal row
         medals.add((row[14]))
         medal_outwriter.writerow([row[14]])
-    plays_outwriter.writerow([row[0], row[6], row[8], row[13], row[3], row[4], row[5], row[14]])
+    plays_outwriter.writerow([row[0], row[6], row[8], row[13], row[3], row[4], row[5], row[14]])  # add row to plays
 
 
 # return the list of all tables
