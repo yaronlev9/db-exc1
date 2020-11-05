@@ -17,7 +17,7 @@ create table event(
 );
 
 create table medal(
-  color varchar(100) primary key
+  place varchar(6) primary key check(place = 'Bronze' or place = 'Silver' or place = 'Gold')
 );
 
 create table athlete(
@@ -39,7 +39,7 @@ create table plays(
   age integer check(age > 0),
   height float check(height > 0),
   weight float check(weight > 0),
-  color varchar(6) check(color = 'Bronze' or color = 'Silver' or color = 'Gold' or color = ''),
+  place varchar(6) check(place = 'Bronze' or place = 'Silver' or place = 'Gold' or place = ''),
   primary key(id, tname, gname, ename),
   foreign key(id, tname, gname) references athlete(id, tname, gname) on delete cascade,
   foreign key(ename) references event(name) on delete cascade
