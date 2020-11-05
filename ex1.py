@@ -51,12 +51,24 @@ def process_file():
                 counter += 1
                 if counter == MAX_LINES:
                     break
+        plays_outfile.close()
+        athlete_outfile.close()
+        medal_outfile.close()
+        event_outfile.close()
+        game_outfile.close()
+        team_outfile.close()
 
 
 # process_row should splits row into the different csv table files
 # CHANGE!!!
 def process_row(row):
     if row[0] == "ID":
+        team_outwriter.writerow([row[6], row[7]])
+        game_outwriter.writerow([row[8], row[9], row[10], row[11]])
+        event_outwriter.writerow([row[13], row[12]])
+        medal_outwriter.writerow([row[14]])
+        plays_outwriter.writerow([row[0], row[6], row[8], row[13], row[3], row[4], row[5], row[14]])  # add row to plays
+        athlete_outwriter.writerow([row[0], row[6], row[8], row[1], row[2]])
         return
     if tuple(row) not in all_rows:  # check for duplicate rows
         all_rows.add(tuple(row))
@@ -88,4 +100,6 @@ def get_names():
 
 if __name__ == "__main__":
     process_file()
+
+
 

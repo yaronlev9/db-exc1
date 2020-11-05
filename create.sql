@@ -21,10 +21,10 @@ create table medal(
 );
 
 create table athlete(
-  id integer,
-  tname varchar(100),
-  gname char(11),
-  name varchar(100) unique not null,
+  id integer not null,
+  tname varchar(100) not null,
+  gname varchar(100) not null,
+  name varchar(100) not null,
   sex char(1) not null check(sex = 'M' or sex = 'F'),
   primary key(id, tname, gname),
   foreign key(tname) references team(name) on delete cascade,
@@ -32,18 +32,16 @@ create table athlete(
 );
 
 create table plays(
-  id integer,
-  tname varchar(100),
-  gname varchar(100),
-  ename varchar(100),
+  id integer not null,
+  tname varchar(100) not null,
+  gname varchar(100) not null,
+  ename varchar(100) not null,
   age integer check(age > 0),
-  height integer check(height > 0),
-  weight integer check(weight > 0),
+  height float check(height > 0),
+  weight float check(weight > 0),
   color varchar(6) check(color = 'Bronze' or color = 'Silver' or color = 'Gold' or color = ''),
   primary key(id, tname, gname, ename),
-  foreign key(id) references athlete(id) on delete cascade,
-  foreign key(tname) references team(name) on delete cascade,
-  foreign key(gname) references game(name) on delete cascade,
+  foreign key(id, tname, gname) references athlete(id, tname, gname) on delete cascade,
   foreign key(ename) references event(name) on delete cascade
 );
 
