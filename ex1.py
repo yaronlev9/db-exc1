@@ -6,8 +6,6 @@ MAX_LINES = 10000
 
 # opens file for olympics table.
 # CHANGE!
-athlete_outfile = open("athlete.csv", 'w', )
-athlete_outwriter = csv.writer(athlete_outfile, delimiter=",", quoting=csv.QUOTE_NONE)
 team_outfile = open("team.csv", 'w', )
 team_outwriter = csv.writer(team_outfile, delimiter=",", quoting=csv.QUOTE_NONE)
 game_outfile = open("game.csv", 'w', )
@@ -16,6 +14,8 @@ event_outfile = open("event.csv", 'w', )
 event_outwriter = csv.writer(event_outfile, delimiter=",", quoting=csv.QUOTE_NONE)
 medal_outfile = open("medal.csv", 'w', )
 medal_outwriter = csv.writer(medal_outfile, delimiter=",", quoting=csv.QUOTE_NONE)
+athlete_outfile = open("athlete.csv", 'w', )
+athlete_outwriter = csv.writer(athlete_outfile, delimiter=",", quoting=csv.QUOTE_NONE)
 plays_outfile = open("plays.csv", 'w', )
 plays_outwriter = csv.writer(plays_outfile, delimiter=",", quoting=csv.QUOTE_NONE)
 athletes = set()
@@ -83,12 +83,9 @@ def process_row(row):
 # return the list of all tables
 # CHANGE!!!
 def get_names():
-    return ["athlete", "team", "game", "event", "medal", "plays"]
+    return ["team", "game", "event", "medal", "athlete", "plays"]
 
 
 if __name__ == "__main__":
     process_file()
 
-#in plays:
-#age, height and weight can be null
-#medal can be null
